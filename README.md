@@ -1,6 +1,6 @@
 # Beauce Web Audit — Hub de Prospection
 
-Outil interne pour gérer un pipeline de vente de refontes de sites web aux PME de la Beauce (Saint-Georges, QC).
+Plateforme de prospection et de gestion commerciale conçue pour piloter un pipeline de vente de refontes de sites web destiné aux PME de la région de la Beauce (Saint-Georges, QC). Elle centralise le suivi des prospects, la prise de contact et le cycle de vente complet, du premier audit jusqu'à la conclusion du contrat.
 
 ## Stack
 
