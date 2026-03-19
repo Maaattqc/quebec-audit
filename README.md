@@ -1,6 +1,6 @@
 # Beauce Web Audit
 
-[🇬🇧 Read in English](README.en.md)
+[🇬🇧 Read in English](README.en.md) · [📁 GitHub](https://github.com/Maaattqc/beauce-audit)
 
 > 🌐 **[Voir la démo live](https://audit.mathieu-fournier.net)** — déployé sur audit.mathieu-fournier.net
 
@@ -62,7 +62,7 @@ Identifier manuellement des PME avec un site web désuet, évaluer leur potentie
 
 ## Screenshots
 
-![Page d'accueil](https://audit.mathieu-fournier.net/docs/screenshot-home.png)
+![Page d'accueil](https://mathieu-fournier.net/audit-demo/docs/screenshot-home.png)
 
 ## 🤖 Développement assisté par IA
 
