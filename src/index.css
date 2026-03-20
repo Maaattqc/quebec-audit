@@ -4,35 +4,352 @@
 
 @layer base {
   :root {
-    --background: 240 6% 7%;
-    --foreground: 240 5% 85%;
-    --card: 240 5% 9%;
-    --card-foreground: 240 5% 85%;
-    --popover: 240 5% 9%;
-    --popover-foreground: 240 5% 85%;
-    --primary: 239 84% 67%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 4% 14%;
-    --secondary-foreground: 240 5% 85%;
-    --muted: 240 4% 14%;
-    --muted-foreground: 240 5% 45%;
-    --accent: 239 84% 67%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 14%;
-    --input: 240 4% 14%;
-    --ring: 239 84% 67%;
-    --radius: 0.5rem;
+    --background: 35 25% 96%;
+    --foreground: 25 15% 10%;
+    --card: 38 30% 99%;
+    --card-foreground: 25 15% 10%;
+    --popover: 38 30% 99%;
+    --popover-foreground: 25 15% 10%;
+    --primary: 36 80% 46%;
+    --primary-foreground: 40 30% 99%;
+    --secondary: 34 18% 92%;
+    --secondary-foreground: 28 16% 26%;
+    --muted: 34 16% 93%;
+    --muted-foreground: 28 10% 42%;
+    --accent: 34 18% 92%;
+    --accent-foreground: 25 15% 10%;
+    --destructive: 4 68% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 34 18% 88%;
+    --input: 34 16% 85%;
+    --ring: 36 80% 46%;
+    --radius: 0.625rem;
+
+    --gold-light: #f5d478;
+    --gold: #c9952b;
+    --gold-dark: #8b6914;
+    --gold-gradient: linear-gradient(135deg, #d4a438 0%, #f0c850 40%, #c9952b 70%, #a07820 100%);
+    --gold-gradient-subtle: linear-gradient(135deg, hsl(38 60% 52% / 0.08) 0%, hsl(42 70% 58% / 0.04) 100%);
+    --gold-shimmer: linear-gradient(110deg, transparent 25%, hsl(42 80% 65% / 0.08) 37%, transparent 50%);
+  }
+
+  .dark {
+    --background: 25 12% 8%;
+    --foreground: 38 20% 90%;
+    --card: 25 10% 11%;
+    --card-foreground: 38 20% 90%;
+    --popover: 25 10% 11%;
+    --popover-foreground: 38 20% 90%;
+    --primary: 38 75% 50%;
+    --primary-foreground: 25 12% 8%;
+    --secondary: 25 10% 15%;
+    --secondary-foreground: 38 15% 75%;
+    --muted: 25 8% 14%;
+    --muted-foreground: 30 8% 50%;
+    --accent: 25 10% 15%;
+    --accent-foreground: 38 20% 90%;
+    --destructive: 4 68% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 25 10% 18%;
+    --input: 25 8% 20%;
+    --ring: 38 75% 50%;
+
+    --gold-gradient: linear-gradient(135deg, #b8892a 0%, #dbb442 40%, #a07820 70%, #8b6914 100%);
+    --gold-shimmer: linear-gradient(110deg, transparent 25%, hsl(42 70% 55% / 0.1) 37%, transparent 50%);
   }
 }
 
 @layer base {
   * { @apply border-border; }
-  body { @apply bg-background text-foreground antialiased; font-family: system-ui, -apple-system, sans-serif; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, hsl(38 50% 50% / 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, hsl(30 40% 50% / 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(240 4% 18%); border-radius: 3px; }
-::selection { background: hsl(239 84% 67%); color: white; }
+::-webkit-scrollbar-thumb { background: hsl(34 18% 82%); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(34 18% 70%); }
+::selection { background: hsl(36 80% 46% / 0.18); }
+
+/* ===== Animations ===== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(36 80% 46% / 0.15); }
+  50% { box-shadow: 0 0 16px 2px hsl(36 80% 46% / 0.12); }
+}
+
+@keyframes float-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes subtle-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ===== Sidebar premium ===== */
+aside.hidden.md\:flex {
+  background: linear-gradient(180deg, hsl(38 30% 99%) 0%, hsl(36 20% 96%) 100%);
+  border-right: 1px solid hsl(34 25% 88%);
+}
+.dark aside.hidden.md\:flex {
+  background: linear-gradient(180deg, hsl(25 10% 11%) 0%, hsl(25 8% 9%) 100%);
+  border-right: 1px solid hsl(25 10% 16%);
+}
+
+/* Logo badge gold gradient */
+aside .w-9.h-9.rounded-lg.bg-primary,
+.w-10.h-10.rounded-xl.bg-primary {
+  background: var(--gold-gradient) !important;
+  box-shadow: 0 2px 12px hsl(36 80% 46% / 0.25), inset 0 1px 0 hsl(42 80% 70% / 0.3);
+  animation: gold-pulse 3s ease-in-out infinite;
+}
+
+/* ===== Top nav bar gradient ===== */
+main > .h-12.border-b {
+  background: linear-gradient(90deg, hsl(38 30% 99%) 0%, hsl(36 25% 97%) 50%, hsl(38 30% 99%) 100%);
+  border-bottom: 1px solid hsl(34 25% 88%);
+  position: relative;
+}
+.dark main > .h-12.border-b {
+  background: linear-gradient(90deg, hsl(25 10% 11%) 0%, hsl(25 8% 10%) 50%, hsl(25 10% 11%) 100%);
+  border-bottom: 1px solid hsl(25 10% 16%);
+}
+
+/* ===== Liquid Gold Ring — Active tab indicator ===== */
+@keyframes gold-ring-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Container — wraps the ring layers around the active tab */
+.gold-ring-indicator {
+  position: absolute;
+  inset: 4px -3px;
+  border-radius: 14px;
+  pointer-events: none;
+  display: block;
+}
+
+/* Layer 1: Blurred warm gold glow */
+.gold-ring-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 18px;
+  background: #e8af48;
+  opacity: 0.15;
+  filter: blur(8px);
+  display: block;
+}
+
+/* Layer 2: The ring — uses border-image approach with rotating child */
+.gold-ring-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: block;
+  /* Mask: punch out the inside, leaving only the border visible */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1.5px;
+}
+
+/* Layer 3: Oversized rotating conic-gradient fills the border */
+.gold-ring-gradient {
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: gold-ring-spin 4.5s linear infinite;
+  background: conic-gradient(
+    from 0deg,
+    #533517 0%,
+    #c49746 12%,
+    #feeaa5 22%,
+    #ffffff 23.5%,
+    #ffc0cb 25%,
+    #feeaa5 26.5%,
+    #c49746 35%,
+    #8b6914 42%,
+    #533517 50%,
+    #c49746 62%,
+    #feeaa5 72%,
+    #ffffff 73.5%,
+    #a8c4e0 75%,
+    #feeaa5 76.5%,
+    #c49746 85%,
+    #533517 100%
+  );
+}
+
+/* Dark mode — brighter glow */
+.dark .gold-ring-glow {
+  opacity: 0.25;
+}
+
+/* ===== Cards with subtle gold border glow on hover ===== */
+[class*="rounded-lg"][class*="border"][class*="bg-card"],
+[class*="rounded-xl"][class*="border"][class*="bg-card"] {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+[class*="rounded-lg"][class*="border"][class*="bg-card"]:hover,
+[class*="rounded-xl"][class*="border"][class*="bg-card"]:hover {
+  border-color: hsl(36 40% 82%);
+  box-shadow: 0 2px 16px hsl(36 60% 50% / 0.06);
+}
+
+/* ===== Primary buttons — rich gold gradient ===== */
+button.bg-primary,
+a.bg-primary,
+[class*="bg-primary"]:not([class*="bg-primary/"]) {
+  background: var(--gold-gradient) !important;
+  border: none;
+  box-shadow: 0 2px 8px hsl(36 80% 46% / 0.2), inset 0 1px 0 hsl(42 80% 70% / 0.2);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button.bg-primary:hover,
+a.bg-primary:hover {
+  box-shadow: 0 4px 16px hsl(36 80% 46% / 0.3), inset 0 1px 0 hsl(42 80% 70% / 0.3);
+  filter: brightness(1.05);
+}
+
+button.bg-primary::after,
+a.bg-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-shimmer);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ===== Pipeline cards entrance ===== */
+[class*="animate-in"] {
+  animation: float-in 0.4s ease-out both;
+}
+
+/* ===== Badge styling ===== */
+.inline-flex[class*="rounded-full"] {
+  border: 1px solid hsl(34 20% 88%);
+}
+
+/* ===== Sidebar business list hover ===== */
+aside button.relative.w-full {
+  transition: all 0.2s ease;
+}
+
+aside button.relative.w-full:hover {
+  background: linear-gradient(135deg, hsl(38 40% 50% / 0.04) 0%, hsl(42 50% 55% / 0.02) 100%);
+}
+.dark aside button.relative.w-full:hover {
+  background: linear-gradient(135deg, hsl(38 40% 50% / 0.08) 0%, hsl(42 50% 55% / 0.04) 100%);
+}
+
+.dark body {
+  background-image:
+    radial-gradient(ellipse at 20% 0%, hsl(38 50% 30% / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, hsl(30 40% 25% / 0.04) 0%, transparent 50%);
+}
+
+.dark ::-webkit-scrollbar-thumb { background: hsl(25 10% 22%); }
+.dark ::-webkit-scrollbar-thumb:hover { background: hsl(25 10% 30%); }
+
+.dark .inline-flex[class*="rounded-full"] {
+  border-color: hsl(25 10% 20%);
+}
+
+/* Active sidebar item — gold left bar */
+aside button.relative.w-full .absolute.left-1 {
+  background: var(--gold-gradient) !important;
+  width: 3px;
+  border-radius: 2px;
+}
+
+/* ===== Save indicator shimmer ===== */
+.text-xs.text-muted-foreground:has(+ *):last-child {
+  background: linear-gradient(90deg, hsl(36 60% 46%), hsl(42 70% 55%), hsl(36 60% 46%));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 2s linear infinite;
+}
+
+/* ===== Email direction dots ===== */
+.bg-blue-500 {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa) !important;
+  box-shadow: 0 0 6px hsl(217 91% 60% / 0.3);
+}
+
+.bg-emerald-500 {
+  background: linear-gradient(135deg, #10b981, #34d399) !important;
+  box-shadow: 0 0 6px hsl(160 84% 39% / 0.3);
+}
+
+/* ===== Grade colors with subtle glow ===== */
+span[style*="color: #22c55e"] { text-shadow: 0 0 8px hsl(142 71% 45% / 0.2); }
+span[style*="color: #3b82f6"] { text-shadow: 0 0 8px hsl(217 91% 60% / 0.2); }
+span[style*="color: #f59e0b"] { text-shadow: 0 0 8px hsl(38 92% 50% / 0.2); }
+span[style*="color: #ef4444"] { text-shadow: 0 0 8px hsl(0 84% 60% / 0.2); }
+
+/* ===== Compose card gold left border ===== */
+.border-l-primary\/50 {
+  border-left-color: var(--gold) !important;
+  border-image: var(--gold-gradient) 1 !important;
+}
+
+/* ===== Loading screen ===== */
+.animate-pulse {
+  animation: gold-pulse 2s ease-in-out infinite, shimmer 2.5s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+/* ===== Focus ring gold ===== */
+*:focus-visible {
+  outline: none;
+  ring: none;
+  box-shadow: 0 0 0 2px hsl(36 80% 46% / 0.3);
+}
+
+/* ===== Subtle noise texture overlay ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 9999;
+}
