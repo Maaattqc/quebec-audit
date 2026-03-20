@@ -1481,7 +1481,7 @@ app.post("/login", express.urlencoded({ extended: false }), (req, res) => {
 });
 
 // Auth check for SPA — redirect to login if not authenticated
-app.get("*", (req, res) => {
+app.get("/*splat",   (req, res) => {
   const cookies = parseCookies(req.headers.cookie);
   const token = cookies["mf_auth"];
   if (token && verifyAuthToken(token)) {
