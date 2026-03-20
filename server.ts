@@ -3,6 +3,9 @@ import path from "path";
 import crypto from "crypto";
 import { spawn } from "child_process";
 import pg from "pg";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import * as cheerio from "cheerio";
 import { Resend } from "resend";
 import { gradeWebsite, rowToBusiness, MAX_SCORES, type Category } from "./lib";
@@ -1412,14 +1415,79 @@ app.use(express.static(STATIC_DIR, {
   },
 }));
 
-// Auth check for SPA — redirect to hub if not authenticated
+// ---------------------------------------------------------------------------
+// Login page (hardcoded password)
+// ---------------------------------------------------------------------------
+
+const SITE_PASSWORD = "123minecraft123$$";
+const AUTH_MAX_AGE = 24 * 60 * 60 * 1000;
+
+function signToken(): string {
+  const expiry = (Date.now() + AUTH_MAX_AGE).toString(16);
+  const hmac = crypto.createHmac("sha256", AUTH_SECRET).update(expiry).digest("hex");
+  return expiry + "." + hmac;
+}
+
+const LOGIN_HTML = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauce Web Audit — Connexion</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 2rem; width: 100%; max-width: 380px; }
+    h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    p { font-size: 0.875rem; color: #8b949e; margin-bottom: 1.5rem; }
+    input { width: 100%; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 0.625rem 0.875rem; color: #c9d1d9; font-size: 0.9rem; margin-bottom: 1rem; outline: none; }
+    input:focus { border-color: #58a6ff; }
+    button { width: 100%; background: #1f6feb; border: none; border-radius: 8px; padding: 0.625rem; color: white; font-size: 0.9rem; font-weight: 500; cursor: pointer; }
+    button:hover { background: #388bfd; }
+    .error { color: #f85149; font-size: 0.8rem; margin-bottom: 0.75rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔒 Beauce Web Audit</h1>
+    <p>Entrez le mot de passe pour accéder au dashboard.</p>
+    ERREUR_PLACEHOLDER
+    <form method="POST" action="/login">
+      <input type="password" name="password" placeholder="Mot de passe" autofocus required />
+      <button type="submit">Accéder →</button>
+    </form>
+  </div>
+</body>
+</html>`;
+
+app.get("/login", (req, res) => {
+  const cookies = parseCookies(req.headers.cookie);
+  if (cookies["mf_auth"] && verifyAuthToken(cookies["mf_auth"])) {
+    return res.redirect("/");
+  }
+  res.setHeader("Content-Type", "text/html");
+  res.end(LOGIN_HTML.replace("ERREUR_PLACEHOLDER", ""));
+});
+
+app.post("/login", express.urlencoded({ extended: false }), (req, res) => {
+  const { password } = req.body;
+  if (password !== SITE_PASSWORD) {
+    res.setHeader("Content-Type", "text/html");
+    return res.end(LOGIN_HTML.replace("ERREUR_PLACEHOLDER", '<div class="error">Mot de passe incorrect.</div>'));
+  }
+  const token = signToken();
+  res.setHeader("Set-Cookie", `mf_auth=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${AUTH_MAX_AGE / 1000}`);
+  res.redirect("/");
+});
+
+// Auth check for SPA — redirect to login if not authenticated
 app.get("*", (req, res) => {
   const cookies = parseCookies(req.headers.cookie);
   const token = cookies["mf_auth"];
   if (token && verifyAuthToken(token)) {
     return res.sendFile(path.join(STATIC_DIR, "index.html"));
   }
-  res.redirect(HUB_URL);
+  res.redirect("/login");
 });
 
 // ---------------------------------------------------------------------------
