@@ -80,7 +80,8 @@ export default function App() {
 
   const totalValue = businesses.reduce((a, b) => {
     const match = (b.estimatedValue || "").match(/[\d\s]+/);
-    return a + (match ? parseInt(match[0].replace(/\s/g, "")) : 0);
+    const val = match ? parseInt(match[0].replace(/\s/g, ""), 10) : 0;
+    return a + (isNaN(val) ? 0 : val);
   }, 0);
 
   const tabs: { key: Tab; label: string }[] = [
