@@ -62,7 +62,7 @@ Identifier manuellement des PME avec un site web désuet, évaluer leur potentie
 
 ## Screenshots
 
-![Page d'accueil](https://mathieu-fournier.net/audit-demo/docs/screenshot-home.png)
+![Page d'accueil](https://raw.githubusercontent.com/Maaattqc/beauce-audit/main/docs/screenshot-home.png)
 
 ## 🤖 Développement assisté par IA
 
