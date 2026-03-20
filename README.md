@@ -62,7 +62,20 @@ Identifier manuellement des PME avec un site web désuet, évaluer leur potentie
 
 ## Screenshots
 
-![Page d'accueil](https://raw.githubusercontent.com/Maaattqc/quebec-audit/main/docs/screenshot-home.png)
+### Pipeline — Vue principale
+![Pipeline](https://raw.githubusercontent.com/Maaattqc/quebec-audit/master/docs/screenshot-pipeline.png)
+
+### Composer un message
+![Composer](https://raw.githubusercontent.com/Maaattqc/quebec-audit/master/docs/screenshot-compose.png)
+
+### Analytics
+![Analytics](https://raw.githubusercontent.com/Maaattqc/quebec-audit/master/docs/screenshot-analytics.png)
+
+### Scanner de sites
+![Scanner](https://raw.githubusercontent.com/Maaattqc/quebec-audit/master/docs/screenshot-scanner.png)
+
+### Ajouter une entreprise
+![Ajouter](https://raw.githubusercontent.com/Maaattqc/quebec-audit/master/docs/screenshot-add.png)
 
 ## 🤖 Développement assisté par IA
 
