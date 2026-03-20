@@ -1419,7 +1419,7 @@ app.use(express.static(STATIC_DIR, {
 // Login page (hardcoded password)
 // ---------------------------------------------------------------------------
 
-const SITE_PASSWORD = "123minecraft123$$";
+const SITE_PASSWORD = process.env.SITE_PASSWORD || "";
 const AUTH_MAX_AGE = 24 * 60 * 60 * 1000;
 
 function signToken(): string {
