@@ -24,7 +24,7 @@ export default function App() {
   // Load
   useEffect(() => {
     try {
-      const raw = localStorage.getItem("beauce-hub-data");
+      const raw = localStorage.getItem("quebec-hub-data");
       if (raw) {
         const parsed = JSON.parse(raw);
         if (parsed.businesses?.length > 0) {
@@ -38,7 +38,7 @@ export default function App() {
   // Save
   const save = useCallback((data: Business[]) => {
     setSaving(true);
-    try { localStorage.setItem("beauce-hub-data", JSON.stringify({ businesses: data, selectedId })); } catch {}
+    try { localStorage.setItem("quebec-hub-data", JSON.stringify({ businesses: data, selectedId })); } catch {}
     setTimeout(() => setSaving(false), 400);
   }, [selectedId]);
 
@@ -99,7 +99,7 @@ export default function App() {
           <div className="flex items-center gap-2.5 mb-4">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">B</div>
             <div>
-              <div className="text-sm font-bold text-white">Beauce Web Audit</div>
+              <div className="text-sm font-bold text-white">Québec Web Audit</div>
               <div className="text-[10px] text-indigo-400 tracking-widest">HUB DE PROSPECTION</div>
             </div>
           </div>

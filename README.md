@@ -1,10 +1,10 @@
-# Beauce Web Audit
+# Québec Web Audit
 
-[🇬🇧 Read in English](README.en.md) · [📁 GitHub](https://github.com/Maaattqc/beauce-audit)
+[🇬🇧 Read in English](README.en.md) · [📁 GitHub](https://github.com/Maaattqc/quebec-audit)
 
 > 🌐 **[Voir la démo live](https://audit.mathieu-fournier.net)** — déployé sur audit.mathieu-fournier.net
 
-> Hub de prospection commerciale pour la vente de refontes de sites web aux PME de la Beauce — scan automatique de sites, scoring sur 50 critères, gestion du pipeline de vente et envoi d'emails.
+> Hub de prospection commerciale pour la vente de refontes de sites web aux PME de le Québec — scan automatique de sites, scoring sur 50 critères, gestion du pipeline de vente et envoi d'emails.
 
 ![React](https://img.shields.io/badge/React_18-61DAFB?style=flat&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
@@ -62,7 +62,7 @@ Identifier manuellement des PME avec un site web désuet, évaluer leur potentie
 
 ## Screenshots
 
-![Page d'accueil](https://raw.githubusercontent.com/Maaattqc/beauce-audit/main/docs/screenshot-home.png)
+![Page d'accueil](https://raw.githubusercontent.com/Maaattqc/quebec-audit/main/docs/screenshot-home.png)
 
 ## 🤖 Développement assisté par IA
 
@@ -71,8 +71,8 @@ Conçu et architecturé par moi — Claude Code a accéléré l'implémentation 
 ## Setup
 
 ```bash
-git clone https://github.com/Maaattqc/beauce-audit.git
-cd beauce-audit
+git clone https://github.com/Maaattqc/quebec-audit.git
+cd quebec-audit
 cp .env.example .env
 # Remplir DATABASE_URL, RESEND_API_KEY
 npm install

@@ -1,4 +1,4 @@
-# beauce-audit
+# quebec-audit
 
 [🇫🇷 Lire en français](README.md)
 

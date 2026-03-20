@@ -1433,7 +1433,7 @@ const LOGIN_HTML = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beauce Web Audit — Connexion</title>
+  <title>Québec Web Audit — Connexion</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
@@ -1449,7 +1449,7 @@ const LOGIN_HTML = `<!DOCTYPE html>
 </head>
 <body>
   <div class="card">
-    <h1>🔒 Beauce Web Audit</h1>
+    <h1>🔒 Québec Web Audit</h1>
     <p>Entrez le mot de passe pour accéder au dashboard.</p>
     ERREUR_PLACEHOLDER
     <form method="POST" action="/login">
@@ -1497,7 +1497,7 @@ app.get("*", (req, res) => {
 initDB().then(() => {
   const server = app.listen(PORT, "127.0.0.1", () => {
     server.setTimeout(300000);
-    console.log(`Beauce Audit listening on http://127.0.0.1:${PORT}`);
+    console.log(`Québec Audit listening on http://127.0.0.1:${PORT}`);
   });
 }).catch(err => {
   console.error("Failed to initialize database:", err);
