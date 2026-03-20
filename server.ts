@@ -81,7 +81,7 @@ function stripAccents(s: string): string {
 
 const PORT = 3849;
 const STATIC_DIR = path.join(__dirname, "client", "dist");
-const AUTH_SECRET = "68684ca23e6f252771be99c5e206c2527621bd109cdeb8e3ba49f3ce2b86d2bc";
+const AUTH_SECRET = process.env.AUTH_SECRET || "68684ca23e6f252771be99c5e206c2527621bd109cdeb8e3ba49f3ce2b86d2bc";
 const HUB_URL = "https://mathieu-fournier.net";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 const EMAIL_FROM = "Mathieu Fournier <demo@mathieu-fournier.net>";
